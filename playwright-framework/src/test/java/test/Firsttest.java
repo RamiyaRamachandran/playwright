@@ -2,23 +2,34 @@ package test;
 
 import base.BaseTest;  // Import the BaseTest class
 import org.junit.jupiter.api.Test;
+
+import com.microsoft.playwright.Locator;
+
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Firsttest extends BaseTest{
 	
 	public void testExamplePage() {
 		//navigate to this url
-		page.navigate("http://uitestingplayground.com/"); 
+		page.navigate("https://ecommerce-playground.lambdatest.io/index.php"); 
+		System.out.println(page.title()); 
+		Locator myAccount = page.locator("//a[contains(.,'My account')][@role='button']");
+		myAccount.hover(); 
 		
-		//check if an element contains a specific text
-		page.locator("text = Resources").click(); 
-		//page.click(null); 
+		//Locates the login and clicks
+		page.locator("//a[contains(.,'Login')]").click(); 
 		
-		//check if the element is visible
-		boolean isElementVisible = page.locator("h1").isVisible(); 
+		//Ensures that the page title is Account LOgin
+		assertThat(page).hasTitle("Account Login"); 
+	
+		//it finds the text box that says place holder value as email address and fills in the value 
+		page.getByPlaceholder("E-Mail Address").fill("learnbuildbreak"); 
 		
-		//Assert that the elementis visible
-		assertTrue (isElementVisible, "Element is not visible"); 
+		page.getByPlaceholder("Password").fill("Learntocode"); 
+		
+		//clicks on the button named login
+		page.click("//input[@value='Login']"); 
 		
 	}
 	
