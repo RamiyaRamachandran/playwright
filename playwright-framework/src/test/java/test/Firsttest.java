@@ -26,7 +26,7 @@ public class Firsttest extends BaseTest{
 		//it finds the text box that says place holder value as email address and fills in the value 
 		page.getByPlaceholder("E-Mail Address").fill("learnbuildbreak"); 
 		
-		page.getByPlaceholder("Password").fill("Learntocode"); 
+		page.getByPlaceholder("Password").fill(""); 
 		
 		//clicks on the button named login
 		page.click("//input[@value='Login']"); 
